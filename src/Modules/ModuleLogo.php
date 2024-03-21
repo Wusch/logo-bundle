@@ -62,9 +62,9 @@ class ModuleLogo extends Module
     protected function compile()
     {
         $objImage = new File($this->singleSRC);
-        $arrMeta = $this->arrMeta[$objImage->basename];
+        $arrMeta = $this->arrMeta[$objImage->basename] ?? [];
 
-        if ($arrMeta[0] == '') {
+        if (!array_key_exists(0, $arrMeta) || $arrMeta[0] == '') {
             $arrMeta[0] = str_replace('_', ' ', preg_replace('/^[0-9]+_/', '', $objImage->filename));
         }
 
